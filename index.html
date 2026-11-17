@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Store | Ropa Nike</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #0d0d0d;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #111;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .logo span {
+            color: #e63946;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-left: 28px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e63946;
+        }
+
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), 
+                        url('https://images.unsplash.com/photo-1556906781-9a412961c28c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            color: #e63946;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #ccc;
+            max-width: 480px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #e63946;
+            color: #fff;
+            padding: 14px 36px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #c1121f;
+            transform: translateY(-2px);
+        }
+
+        .productos {
+            padding: 80px 50px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .productos h2 {
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .productos .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 50px;
+            font-size: 1.05rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .card {
+            background-color: #1a1a1a;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #222;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(230, 57, 70, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 270px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .precio {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #e63946;
+            margin-bottom: 14px;
+        }
+
+        .btn-card {
+            display: block;
+            text-align: center;
+            background-color: transparent;
+            border: 2px solid #e63946;
+            color: #e63946;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .btn-card:hover {
+            background-color: #e63946;
+            color: #fff;
+        }
+
+        .about {
+            background-color: #111;
+            padding: 80px 50px;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.2rem;
+            margin-bottom: 18px;
+            font-weight: 800;
+        }
+
+        .about p {
+            max-width: 680px;
+            margin: 0 auto;
+            color: #bbb;
+            font-size: 1.1rem;
+        }
+
+        .contacto {
+            padding: 80px 50px;
+            max-width: 560px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contacto h2 {
+            font-size: 2.2rem;
+            margin-bottom: 28px;
+            font-weight: 800;
+        }
+
+        .contacto input,
+        .contacto textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 14px;
+            border: none;
+            border-radius: 8px;
+            background-color: #1a1a1a;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .contacto button {
+            background-color: #e63946;
+            color: #fff;
+            border: none;
+            padding: 14px 42px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contacto button:hover {
+            background-color: #c1121f;
+        }
+
+        footer {
+            background-color: #0a0a0a;
+            text-align: center;
+            padding: 25px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 0 25px;
+                align-items: center;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            nav a {
+                margin-left: 14px;
+                font-size: 0.85rem;
+            }
+
+            header {
+                padding: 15px 20px;
+            }
+
+            .productos {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Carlos <span>Store</span></div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#productos">Productos</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <h1>Carlos <span>Store</span></h1>
+        <p>Tu tienda de confianza en ropa Nike original. Estilo, calidad y los mejores precios.</p>
+        <a href="#productos" class="btn">Ver Productos</a>
+    </section>
+
+    <section class="productos" id="productos">
+        <h2>Productos Nike</h2>
+        <p class="subtitle">Ropa y zapatillas Nike 100% originales</p>
+        <div class="grid">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&h=500&fit=crop" alt="Nike Air Max">
+                <div class="card-content">
+                    <h3>Nike Air Max</h3>
+                    <p>Zapatillas icónicas con amortiguación Air.</p>
+                    <div class="precio">$489.000</div>
+                    <a href="#contacto" class="btn-card">Comprar</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&h=500&fit=crop" alt="Nike Tech Fleece">
+                <div class="card-content">
+                    <h3>Tech Fleece Hoodie</h3>
+                    <p>Buzo premium ligero y cálido.</p>
+                    <div class="precio">$359.000</div>
+                    <a href="#contacto" class="btn-card">Comprar</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=500&h=500&fit=crop" alt="Nike Dri-FIT">
+                <div class="card-content">
+                    <h3>Dri-FIT Training</h3>
+                    <p>Camiseta deportiva de alto rendimiento.</p>
+                    <div class="precio">$149.000</div>
+                    <a href="#contacto" class="btn-card">Comprar</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=500&h=500&fit=crop" alt="Nike Shorts">
+                <div class="card-content">
+                    <h3>Nike Flex Shorts</h3>
+                    <p>Shorts ligeros ideales para entrenar.</p>
+                    <div class="precio">$129.000</div>
+                    <a href="#contacto" class="btn-card">Comprar</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="about" id="nosotros">
+        <h2>Sobre Carlos Store</h2>
+        <p>
+            En Carlos Store nos especializamos en la reventa de ropa y zapatillas Nike 100% originales. 
+            Ofrecemos productos de calidad, precios justos y atención personalizada. 
+            Tu estilo deportivo empieza aquí.
+        </p>
+    </section>
+
+    <section class="contacto" id="contacto">
+        <h2>Contáctanos</h2>
+        <form>
+            <input type="text" placeholder="Tu nombre" required>
+            <input type="email" placeholder="Tu correo" required>
+            <textarea rows="5" placeholder="¿Qué producto Nike te interesa?" required></textarea>
+            <button type="submit">Enviar mensaje</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2026 Carlos Store – Reventa oficial de ropa Nike. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
